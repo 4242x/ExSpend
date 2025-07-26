@@ -72,7 +72,7 @@ class LandingScreen extends StatelessWidget {
                 height: scrHeight * 0.07,
                 decoration: BoxDecoration(
                   color: const Color.fromARGB(255, 2, 165, 2),
-                  borderRadius: BorderRadius.circular(scrWidth * 0.05),
+                  borderRadius: BorderRadius.circular(22),
                 ),
                 child: Center(
                   child: Text(
@@ -94,7 +94,7 @@ class LandingScreen extends StatelessWidget {
                 margin: EdgeInsets.only(top: scrHeight * 0.02),
                 decoration: BoxDecoration(
                   color: const Color.fromARGB(255, 255, 255, 255),
-                  borderRadius: BorderRadius.circular(scrWidth * 0.05),
+                  borderRadius: BorderRadius.circular(22),
                 ),
                 child: Center(
                   child: Text(
