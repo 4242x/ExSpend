@@ -1,4 +1,5 @@
 import 'package:ex_spend/screen/login_screen.dart';
+import 'package:ex_spend/screen/signup_screen.dart';
 import 'package:flutter/material.dart';
 
 class LandingScreen extends StatelessWidget {
@@ -88,6 +89,12 @@ class LandingScreen extends StatelessWidget {
               ),
             ),
             GestureDetector(
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SignupScreen(),
+                ),
+              ),
               child: Container(
                 width: scrWidth * 0.8,
                 height: scrHeight * 0.07,

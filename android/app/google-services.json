@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "803509563468",
+    "project_id": "exspend-e8333",
+    "storage_bucket": "exspend-e8333.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803509563468:android:5d7b06901c17ae119044e9",
+        "android_client_info": {
+          "package_name": "com.example.ex_spend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_cyqua5Y-5hiigr1PkT3vVD7qfUi8pWc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

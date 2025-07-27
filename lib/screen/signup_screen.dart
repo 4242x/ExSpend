@@ -1,9 +1,9 @@
+import 'package:ex_spend/screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
-import 'package:ex_spend/screen/signup_screen.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class SignupScreen extends StatelessWidget {
+  const SignupScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +14,12 @@ class LoginScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: scrWidth * 0.100,
+            horizontal: scrWidth * 0.1,
             vertical: scrHeight * 0.045,
           ),
           child: Column(
             children: [
-              SizedBox(height: scrHeight * 0.07),
+              SizedBox(height: scrHeight * 0.05),
               RichText(
                 text: TextSpan(
                   style: TextStyle(fontSize: scrWidth * 0.102),
@@ -59,8 +59,9 @@ class LoginScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        'Login',
+                        'Sign Up',
                         style: TextStyle(
+                          wordSpacing: scrWidth * -0.008,
                           fontFamily: 'Montserrat',
                           fontSize: scrHeight * 0.042,
                           color: const Color.fromARGB(255, 255, 255, 255),
@@ -73,32 +74,29 @@ class LoginScreen extends StatelessWidget {
                           style: TextStyle(fontSize: scrHeight * 0.016),
                           children: <TextSpan>[
                             TextSpan(
-                              text: 'Don\'t have an account? ',
+                              text: 'Already have an account? ',
                               style: TextStyle(
                                 fontFamily: 'Montserrat',
-
                                 color: const Color.fromARGB(255, 255, 255, 255),
                                 fontVariations: [FontVariation('wght', 500)],
                               ),
                             ),
                             TextSpan(
+                              text: 'Login',
+                              style: TextStyle(
+                                fontFamily: 'Montserrat',
+                                color: const Color.fromARGB(255, 2, 165, 2),
+                                fontVariations: [FontVariation('wght', 500)],
+                              ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          const SignupScreen(),
+                                      builder: (context) => const LoginScreen(),
                                     ),
                                   );
                                 },
-                              text: 'Sign Up',
-                              style: TextStyle(
-                                fontFamily: 'Montserrat',
-
-                                color: const Color.fromARGB(255, 2, 165, 2),
-                                fontVariations: [FontVariation('wght', 500)],
-                              ),
                             ),
                           ],
                         ),
@@ -152,15 +150,50 @@ class LoginScreen extends StatelessWidget {
                           ),
                           SizedBox(height: scrHeight * 0.015),
                           TextFormField(
-                            obscureText: true,
                             onTapOutside: (event) =>
                                 FocusScope.of(context).unfocus(),
+                            obscureText: true,
                             style: TextStyle(
                               fontFamily: 'Montserrat',
                               color: const Color.fromARGB(255, 255, 255, 255),
                             ),
                             decoration: InputDecoration(
                               labelText: 'Password',
+                              focusColor: const Color.fromARGB(255, 2, 165, 2),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16),
+                                borderSide: BorderSide(
+                                  color: const Color.fromARGB(
+                                    255,
+                                    255,
+                                    255,
+                                    255,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: scrHeight * 0.015),
+                          Text(
+                            ' Confirm Password',
+                            style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontSize: scrHeight * 0.020,
+                              color: const Color.fromARGB(255, 255, 255, 255),
+                              fontVariations: [FontVariation('wght', 500)],
+                            ),
+                          ),
+                          SizedBox(height: scrHeight * 0.015),
+                          TextFormField(
+                            onTapOutside: (event) =>
+                                FocusScope.of(context).unfocus(),
+                            obscureText: true,
+                            style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              color: const Color.fromARGB(255, 255, 255, 255),
+                            ),
+                            decoration: InputDecoration(
+                              labelText: 'Confirm Password',
                               focusColor: const Color.fromARGB(255, 2, 165, 2),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(16),
@@ -186,7 +219,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         child: Center(
                           child: Text(
-                            'Login',
+                            'Sign Up',
                             style: TextStyle(
                               fontSize: scrWidth * 0.05,
                               color: Colors.white,
@@ -226,7 +259,6 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-
                       Container(
                         height: scrHeight * 0.065,
                         margin: EdgeInsets.only(top: scrHeight * 0.02),
