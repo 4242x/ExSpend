@@ -43,3 +43,15 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Firebase-related
+firebase.json
+.firebase/
+.firebaserc
+
+# Android Studio Firebase plugin cache
+android/.idea/
+
+# Firebase CLI cache
+.config/firebase/
+.firebase-tools.json
