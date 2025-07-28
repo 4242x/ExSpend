@@ -1,9 +1,52 @@
 import 'package:ex_spend/screen/login_screen.dart';
+import 'package:ex_spend/screen/home_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 
-class SignupScreen extends StatelessWidget {
+class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
+
+  @override
+  State<SignupScreen> createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+Future<void> createuserwithEmailAndPassword() async {
+  if (passwordController.text != confirmPasswordController.text) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Passwords do not match')),
+    );
+    return;
+  }
+  try {
+    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: emailController.text.trim(),
+      password: passwordController.text.trim(),
+    );
+  
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => HomeScreen()),
+    );
+  } catch (e) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Sign up failed: ${e.toString()}')),
+    );
+  }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +136,7 @@ class SignupScreen extends StatelessWidget {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => const LoginScreen(),
+                                      builder: (context) => LoginScreen(),
                                     ),
                                   );
                                 },
@@ -116,6 +159,7 @@ class SignupScreen extends StatelessWidget {
                           ),
                           SizedBox(height: scrHeight * 0.015),
                           TextFormField(
+                            controller: emailController,
                             onTapOutside: (event) =>
                                 FocusScope.of(context).unfocus(),
                             style: TextStyle(
@@ -150,6 +194,7 @@ class SignupScreen extends StatelessWidget {
                           ),
                           SizedBox(height: scrHeight * 0.015),
                           TextFormField(
+                            controller: passwordController,
                             onTapOutside: (event) =>
                                 FocusScope.of(context).unfocus(),
                             obscureText: true,
@@ -185,6 +230,7 @@ class SignupScreen extends StatelessWidget {
                           ),
                           SizedBox(height: scrHeight * 0.015),
                           TextFormField(
+                            controller: confirmPasswordController, // <-- use controller
                             onTapOutside: (event) =>
                                 FocusScope.of(context).unfocus(),
                             obscureText: true,
@@ -217,14 +263,20 @@ class SignupScreen extends StatelessWidget {
                           color: const Color.fromARGB(255, 2, 165, 2),
                           borderRadius: BorderRadius.circular(48),
                         ),
-                        child: Center(
-                          child: Text(
-                            'Sign Up',
-                            style: TextStyle(
-                              fontSize: scrWidth * 0.05,
-                              color: Colors.white,
-                              fontFamily: 'Quicksand',
-                              fontVariations: [FontVariation('wght', 600)],
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(48),
+                          onTap: () async {
+                            await createuserwithEmailAndPassword();
+                          },
+                          child: Center(
+                            child: Text(
+                              'Sign Up',
+                              style: TextStyle(
+                                fontSize: scrWidth * 0.05,
+                                color: Colors.white,
+                                fontFamily: 'Quicksand',
+                                fontVariations: [FontVariation('wght', 600)],
+                              ),
                             ),
                           ),
                         ),

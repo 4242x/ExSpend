@@ -66,7 +66,7 @@ class LandingScreen extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () => Navigator.push(context, MaterialPageRoute(
-                builder: (context) => const LoginScreen(),
+                builder: (context) =>  LoginScreen(),
               )),
               child: Container(
                 width: scrWidth * 0.8,

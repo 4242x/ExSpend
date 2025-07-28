@@ -1,9 +1,45 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:ex_spend/screen/signup_screen.dart';
 
-class LoginScreen extends StatelessWidget {
+import 'home_screen.dart';
+
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final email = TextEditingController();
+  final password = TextEditingController();
+
+  Future<void> loginWithEmailandPassword() async {
+      FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email.text.trim(),
+        password: password.text.trim(),
+      ).then((value) {
+
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const HomeScreen()),
+        );
+      }).catchError((error) {
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(error.toString())),
+        );
+      });
+  }
+
+  @override
+  void dispose() {
+    email.dispose();
+    password.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +112,6 @@ class LoginScreen extends StatelessWidget {
                               text: 'Don\'t have an account? ',
                               style: TextStyle(
                                 fontFamily: 'Montserrat',
-
                                 color: const Color.fromARGB(255, 255, 255, 255),
                                 fontVariations: [FontVariation('wght', 500)],
                               ),
@@ -95,7 +130,6 @@ class LoginScreen extends StatelessWidget {
                               text: 'Sign Up',
                               style: TextStyle(
                                 fontFamily: 'Montserrat',
-
                                 color: const Color.fromARGB(255, 2, 165, 2),
                                 fontVariations: [FontVariation('wght', 500)],
                               ),
@@ -118,6 +152,8 @@ class LoginScreen extends StatelessWidget {
                           ),
                           SizedBox(height: scrHeight * 0.015),
                           TextFormField(
+
+                            controller: email,
                             onTapOutside: (event) =>
                                 FocusScope.of(context).unfocus(),
                             style: TextStyle(
@@ -152,6 +188,8 @@ class LoginScreen extends StatelessWidget {
                           ),
                           SizedBox(height: scrHeight * 0.015),
                           TextFormField(
+
+                            controller: password,
                             obscureText: true,
                             onTapOutside: (event) =>
                                 FocusScope.of(context).unfocus(),
@@ -178,20 +216,23 @@ class LoginScreen extends StatelessWidget {
                         ],
                       ),
                       SizedBox(height: scrHeight * 0.025),
-                      Container(
-                        height: scrHeight * 0.065,
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 2, 165, 2),
-                          borderRadius: BorderRadius.circular(48),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Login',
-                            style: TextStyle(
-                              fontSize: scrWidth * 0.05,
-                              color: Colors.white,
-                              fontFamily: 'Quicksand',
-                              fontVariations: [FontVariation('wght', 600)],
+                      GestureDetector(
+                        onTap: loginWithEmailandPassword,
+                        child: Container(
+                          height: scrHeight * 0.065,
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 2, 165, 2),
+                            borderRadius: BorderRadius.circular(48),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Login',
+                              style: TextStyle(
+                                fontSize: scrWidth * 0.05,
+                                color: Colors.white,
+                                fontFamily: 'Quicksand',
+                                fontVariations: [FontVariation('wght', 600)],
+                              ),
                             ),
                           ),
                         ),
