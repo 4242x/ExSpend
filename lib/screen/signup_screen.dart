@@ -36,7 +36,7 @@ Future<void> createuserwithEmailAndPassword() async {
       email: emailController.text.trim(),
       password: passwordController.text.trim(),
     );
-  
+   if (!mounted) return; 
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => HomeScreen()),

@@ -21,13 +21,13 @@ class _LoginScreenState extends State<LoginScreen> {
         email: email.text.trim(),
         password: password.text.trim(),
       ).then((value) {
-
+         if (!mounted) return; 
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const HomeScreen()),
         );
       }).catchError((error) {
-
+           if (!mounted) return; 
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(error.toString())),
         );

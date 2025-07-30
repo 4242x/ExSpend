@@ -1,5 +1,5 @@
 import 'package:ex_spend/firebase_options.dart';
-import 'package:ex_spend/screen/landing_screen.dart';
+import 'package:ex_spend/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 void main() async {
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       title: 'ExSpend',
   
       debugShowCheckedModeBanner: false,
-      home: const LandingScreen(),
+      home: const HomeScreen(),
     );
     }
     }
