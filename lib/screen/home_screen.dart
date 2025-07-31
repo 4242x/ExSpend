@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
 
-      backgroundColor: Colors.black,
+      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(
@@ -162,8 +162,143 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Colors.white,
                 ),
               ),
-                            SizedBox(height: scrHeight * 0.03),
-                            
+              SizedBox(height: scrHeight * 0.03),
+
+              SizedBox(
+                height: scrHeight * 0.11,
+                child: ListView(
+                  padding: EdgeInsets.zero, // <-- Remove default padding
+                  physics: const BouncingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    Container(
+                      width: scrWidth * 0.25,
+                      margin: EdgeInsets.only(right: scrWidth * 0.05),
+                      padding: EdgeInsets.all(scrHeight * 0.01),
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(38, 255, 255, 255),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Transaction 1',
+                            style: TextStyle(
+                              fontSize: scrHeight * 0.018,
+                              fontFamily: 'Montserrat',
+                              fontVariations: [FontVariation('wght', 500)],
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(height: scrHeight * 0.01),
+                          Text('₹ -500',
+                            style: TextStyle(
+                              fontSize: scrHeight * 0.018,
+                              fontFamily: 'Montserrat',
+                              fontVariations: [FontVariation('wght', 400)],
+                              color: Colors.red,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: scrWidth * 0.25,
+                      margin: EdgeInsets.only(right: scrWidth * 0.05),
+                      padding: EdgeInsets.all(scrHeight * 0.01),
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(38, 255, 255, 255),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Transaction 1',
+                            style: TextStyle(
+                              fontSize: scrHeight * 0.018,
+                              fontFamily: 'Montserrat',
+                              fontVariations: [FontVariation('wght', 500)],
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(height: scrHeight * 0.01),
+                          Text('₹ -500',
+                            style: TextStyle(
+                              fontSize: scrHeight * 0.018,
+                              fontFamily: 'Montserrat',
+                              fontVariations: [FontVariation('wght', 400)],
+                              color: Colors.red,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),Container(
+                      width: scrWidth * 0.25,
+                      margin: EdgeInsets.only(right: scrWidth * 0.05),
+                      padding: EdgeInsets.all(scrHeight * 0.01),
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(38, 255, 255, 255),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Transaction 1',
+                            style: TextStyle(
+                              fontSize: scrHeight * 0.018,
+                              fontFamily: 'Montserrat',
+                              fontVariations: [FontVariation('wght', 500)],
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(height: scrHeight * 0.01),
+                          Text('₹ -500',
+                            style: TextStyle(
+                              fontSize: scrHeight * 0.018,
+                              fontFamily: 'Montserrat',
+                              fontVariations: [FontVariation('wght', 400)],
+                              color: Colors.red,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: scrWidth * 0.25,
+                      margin: EdgeInsets.only(right: scrWidth * 0.05),
+                      padding: EdgeInsets.all(scrHeight * 0.01),
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(38, 255, 255, 255),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Transaction 1',
+                            style: TextStyle(
+                              fontSize: scrHeight * 0.018,
+                              fontFamily: 'Montserrat',
+                              fontVariations: [FontVariation('wght', 500)],
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(height: scrHeight * 0.01),
+                          Text('₹ -500',
+                            style: TextStyle(
+                              fontSize: scrHeight * 0.018,
+                              fontFamily: 'Montserrat',
+                              fontVariations: [FontVariation('wght', 400)],
+                              color: Colors.red,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ]
+                ),
+              ),
+              SizedBox(height: scrHeight * 0.03),
+              
             ],
           ),
         ),
