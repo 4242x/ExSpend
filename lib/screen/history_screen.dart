@@ -71,6 +71,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
           SizedBox(height: scrHeight * 0.005),
           Expanded(
             child: ListView.builder(
+              physics: BouncingScrollPhysics(),
               itemCount: 20, 
               itemBuilder: (context, index) {
                 return Container(

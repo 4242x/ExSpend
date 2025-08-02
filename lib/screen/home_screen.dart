@@ -1,3 +1,4 @@
+import 'package:ex_spend/screen/history_screen.dart';
 import 'package:ex_spend/screen/landing_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -153,152 +154,117 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: scrHeight * 0.03),
-              Text('Recent Transactions',
+              SizedBox(height: scrHeight * 0.027),
+              Text(
+                'Analytics',
                 style: TextStyle(
-                  fontSize: scrHeight * 0.025,
+                  fontSize: scrHeight * 0.03,
                   fontFamily: 'Montserrat',
                   fontVariations: [FontVariation('wght', 700)],
                   color: Colors.white,
                 ),
               ),
-              SizedBox(height: scrHeight * 0.03),
+              SizedBox(height: scrHeight * 0.027),
 
-              SizedBox(
-                height: scrHeight * 0.11,
-                child: ListView(
-                  padding: EdgeInsets.zero, // <-- Remove default padding
-                  physics: const BouncingScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    Container(
-                      width: scrWidth * 0.25,
-                      margin: EdgeInsets.only(right: scrWidth * 0.05),
-                      padding: EdgeInsets.all(scrHeight * 0.01),
-                      decoration: BoxDecoration(
-                        color: Color.fromARGB(38, 255, 255, 255),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Transaction 1',
-                            style: TextStyle(
-                              fontSize: scrHeight * 0.018,
-                              fontFamily: 'Montserrat',
-                              fontVariations: [FontVariation('wght', 500)],
-                              color: Colors.white,
-                            ),
-                          ),
-                          SizedBox(height: scrHeight * 0.01),
-                          Text('₹ -500',
-                            style: TextStyle(
-                              fontSize: scrHeight * 0.018,
-                              fontFamily: 'Montserrat',
-                              fontVariations: [FontVariation('wght', 400)],
-                              color: Colors.red,
-                            ),
-                          ),
-                        ],
-                      ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: scrWidth * 0.21,
+                    height: scrHeight * 0.1,
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(38, 255, 255, 255),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    Container(
-                      width: scrWidth * 0.25,
-                      margin: EdgeInsets.only(right: scrWidth * 0.05),
-                      padding: EdgeInsets.all(scrHeight * 0.01),
-                      decoration: BoxDecoration(
-                        color: Color.fromARGB(38, 255, 255, 255),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Transaction 1',
-                            style: TextStyle(
-                              fontSize: scrHeight * 0.018,
-                              fontFamily: 'Montserrat',
-                              fontVariations: [FontVariation('wght', 500)],
-                              color: Colors.white,
-                            ),
-                          ),
-                          SizedBox(height: scrHeight * 0.01),
-                          Text('₹ -500',
-                            style: TextStyle(
-                              fontSize: scrHeight * 0.018,
-                              fontFamily: 'Montserrat',
-                              fontVariations: [FontVariation('wght', 400)],
-                              color: Colors.red,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),Container(
-                      width: scrWidth * 0.25,
-                      margin: EdgeInsets.only(right: scrWidth * 0.05),
-                      padding: EdgeInsets.all(scrHeight * 0.01),
-                      decoration: BoxDecoration(
-                        color: Color.fromARGB(38, 255, 255, 255),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Transaction 1',
-                            style: TextStyle(
-                              fontSize: scrHeight * 0.018,
-                              fontFamily: 'Montserrat',
-                              fontVariations: [FontVariation('wght', 500)],
-                              color: Colors.white,
-                            ),
-                          ),
-                          SizedBox(height: scrHeight * 0.01),
-                          Text('₹ -500',
-                            style: TextStyle(
-                              fontSize: scrHeight * 0.018,
-                              fontFamily: 'Montserrat',
-                              fontVariations: [FontVariation('wght', 400)],
-                              color: Colors.red,
-                            ),
-                          ),
-                        ],
-                      ),
+                    child: Column(),
+                  ),
+                  Container(
+                    width: scrWidth * 0.3,
+                    height: scrHeight * 0.1,
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(38, 255, 255, 255),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    Container(
-                      width: scrWidth * 0.25,
-                      margin: EdgeInsets.only(right: scrWidth * 0.05),
-                      padding: EdgeInsets.all(scrHeight * 0.01),
-                      decoration: BoxDecoration(
-                        color: Color.fromARGB(38, 255, 255, 255),
-                        borderRadius: BorderRadius.circular(10),
+                    child: Column(),
+                  ),
+                  Container(
+                    width: scrWidth * 0.21,
+                    height: scrHeight * 0.1,
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(38, 255, 255, 255),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(),
+                  ),
+                ],
+              ),
+              SizedBox(height: scrHeight * 0.027),
+              Row(
+                children: [
+                  Text(
+                    'Recent Transactions',
+                    style: TextStyle(
+                      fontSize: scrHeight * 0.028,
+                      fontFamily: 'Montserrat',
+                      fontVariations: [FontVariation('wght', 700)],
+                      color: Colors.white,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HistoryScreen(),
+                        ),
+                      );
+                    },
+                    icon: Icon(Icons.open_in_new_rounded, color: Colors.white),
+                  ),
+                ],
+              ),
+              SizedBox(height: scrHeight * 0.015),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: 5,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      margin: EdgeInsets.symmetric(
+                        horizontal: scrWidth * 0.005,
+                        vertical: scrHeight * 0.01,
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      padding: EdgeInsets.all(scrWidth * 0.03),
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(38, 255, 255, 255),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Transaction 1',
+                          Text(
+                            'Transaction ${index + 1}',
                             style: TextStyle(
-                              fontSize: scrHeight * 0.018,
+                              fontSize: scrHeight * 0.022,
                               fontFamily: 'Montserrat',
-                              fontVariations: [FontVariation('wght', 500)],
                               color: Colors.white,
+                              fontVariations: [FontVariation('wght', 600)],
                             ),
                           ),
-                          SizedBox(height: scrHeight * 0.01),
-                          Text('₹ -500',
+                          Text(
+                            'Rs.${(index + 1) * 100}.00',
                             style: TextStyle(
-                              fontSize: scrHeight * 0.018,
+                              fontSize: scrHeight * 0.022,
+                              color: const Color.fromARGB(255, 2, 165, 2),
                               fontFamily: 'Montserrat',
-                              fontVariations: [FontVariation('wght', 400)],
-                              color: Colors.red,
+                              fontVariations: [FontVariation('wght', 600)],
                             ),
                           ),
                         ],
                       ),
-                    ),
-                  ]
+                    );
+                  },
                 ),
               ),
-              SizedBox(height: scrHeight * 0.03),
-              
             ],
           ),
         ),

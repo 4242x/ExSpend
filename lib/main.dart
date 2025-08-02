@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'ExSpend',
   
       debugShowCheckedModeBanner: false,
-      home: const HistoryScreen(),
+      home: const HomeScreen(),
     );
     }
     }
