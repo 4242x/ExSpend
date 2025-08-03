@@ -76,7 +76,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
               itemBuilder: (context, index) {
                 return Container(
                   margin: EdgeInsets.symmetric(horizontal: scrWidth * 0.05, vertical: scrHeight * 0.01),
-                  padding: EdgeInsets.all(scrWidth * 0.03),
+                  padding: EdgeInsets.all(scrWidth * 0.07),
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(38, 255, 255, 255),
                     borderRadius: BorderRadius.circular(15),

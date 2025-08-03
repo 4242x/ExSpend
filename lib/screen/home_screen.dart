@@ -1,3 +1,4 @@
+import 'package:ex_spend/screen/balance_screen.dart';
 import 'package:ex_spend/screen/history_screen.dart';
 import 'package:ex_spend/screen/landing_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -127,19 +128,23 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(width: scrWidth * 0.03),
                   Column(
                     children: [
-                      Container(
-                        height: scrHeight * 0.068,
-                        width: scrWidth * 0.24,
-                        decoration: BoxDecoration(
-                          color: Color.fromARGB(38, 255, 255, 255),
-                          borderRadius: BorderRadius.circular(10),
+                      GestureDetector(
+                        onTap: () => Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const BalanceScreen(),
+                          ),
                         ),
-                        child: Column(children: [
-                         
-                        ],
+                        child: Container(
+                          height: scrHeight * 0.068,
+                          width: scrWidth * 0.24,
+                          decoration: BoxDecoration(
+                            color: Color.fromARGB(38, 255, 255, 255),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Center(child: Text('+', textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: scrHeight*0.05),)),
+                        ),
                       ),
-                      ),
-
                       SizedBox(height: scrHeight * 0.014),
                       Container(
                         width: scrWidth * 0.24,
@@ -154,7 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: scrHeight * 0.027),
+              SizedBox(height: scrHeight * 0.02),
               Text(
                 'Analytics',
                 style: TextStyle(
@@ -233,7 +238,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         horizontal: scrWidth * 0.005,
                         vertical: scrHeight * 0.01,
                       ),
-                      padding: EdgeInsets.all(scrWidth * 0.03),
+                      padding: EdgeInsets.all(scrWidth * 0.07),
                       decoration: BoxDecoration(
                         color: const Color.fromARGB(38, 255, 255, 255),
                         borderRadius: BorderRadius.circular(15),
@@ -265,10 +270,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
               ),
-            ],
-          ),
+            
+          ]),
         ),
-      ),
-    );
+    ));
+
   }
 }
