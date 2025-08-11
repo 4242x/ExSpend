@@ -1,5 +1,4 @@
 import 'package:ex_spend/firebase_options.dart';
-import 'package:ex_spend/screen/history_screen.dart';
 import 'package:ex_spend/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';

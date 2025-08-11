@@ -51,32 +51,39 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              RichText(
-                text: TextSpan(
-                  style: TextStyle(
-                    fontSize: scrHeight * 0.045,
-                    fontFamily: 'Montserrat',
-                    fontVariations: [FontVariation('wght', 500)],
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  RichText(
+                    text: TextSpan(
+                      style: TextStyle(
+                        fontSize: scrHeight * 0.045,
+                        fontFamily: 'Montserrat',
+                        fontVariations: [FontVariation('wght', 500)],
+                      ),
+                      children: [
+                        TextSpan(
+                          text: 'Welcome,\n',
+                          style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontVariations: [FontVariation('wght', 500)],
+                            color: Color.fromARGB(255, 2, 165, 2),
+                          ),
+                        ),
+                        TextSpan(
+                          text: 'User',
+                          style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontVariations: [FontVariation('wght', 500)],
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  children: [
-                    TextSpan(
-                      text: 'Welcome,\n',
-                      style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        fontVariations: [FontVariation('wght', 500)],
-                        color: Color.fromARGB(255, 2, 165, 2),
-                      ),
-                    ),
-                    TextSpan(
-                      text: 'User',
-                      style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        fontVariations: [FontVariation('wght', 500)],
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
+                 IconButton(onPressed: (){
+                 }, iconSize: scrHeight*0.04, color: Colors.grey ,icon: Icon(Icons.person))
+                ],
               ),
               SizedBox(height: scrHeight * 0.03),
               Row(
@@ -129,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Column(
                     children: [
                       GestureDetector(
-                        onTap: () => Navigator.pushReplacement(
+                        onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const BalanceScreen(),
@@ -142,7 +149,16 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: Color.fromARGB(38, 255, 255, 255),
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: Center(child: Text('+', textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: scrHeight*0.05),)),
+                          child: Center(
+                            child: Text(
+                              '+',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: scrHeight * 0.05,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                       SizedBox(height: scrHeight * 0.014),
@@ -170,7 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               SizedBox(height: scrHeight * 0.027),
-
+        
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -217,7 +233,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   IconButton(
                     onPressed: () {
-                      Navigator.pushReplacement(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const HistoryScreen(),
@@ -229,7 +245,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               SizedBox(height: scrHeight * 0.015),
-              Expanded(
+                          Flexible(
                 child: ListView.builder(
                   itemCount: 5,
                   itemBuilder: (context, index) {
@@ -270,10 +286,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
               ),
-            
-          ]),
+            ],
+          ),
         ),
-    ));
-
+      ),
+    );
   }
 }
