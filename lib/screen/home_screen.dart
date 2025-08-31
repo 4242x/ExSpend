@@ -1,3 +1,4 @@
+import 'package:ex_spend/screen/analytics_screen.dart';
 import 'package:ex_spend/screen/balance_screen.dart';
 import 'package:ex_spend/screen/history_screen.dart';
 import 'package:ex_spend/screen/landing_screen.dart';
@@ -199,14 +200,26 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     child: Column(),
                   ),
-                  Container(
-                    width: scrWidth * 0.3,
-                    height: scrHeight * 0.1,
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(38, 255, 255, 255),
-                      borderRadius: BorderRadius.circular(10),
+                  GestureDetector(
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AnalyticsScreen(),
+                        ),
+                      ),
+                    child: Container(
+                      width: scrWidth * 0.3,
+                      height: scrHeight * 0.1,
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(38, 255, 255, 255),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Icon(
+                        Icons.pie_chart_rounded,
+                        color: Colors.white,
+                        size: scrHeight * 0.06,
+                      ),
                     ),
-                    child: Column(),
                   ),
                   Container(
                     width: scrWidth * 0.21,
