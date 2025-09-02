@@ -41,12 +41,11 @@ class _HomeScreenState extends State<HomeScreen> {
     double scrHeight = MediaQuery.sizeOf(context).height;
     return Scaffold(
       extendBodyBehindAppBar: true,
-
       backgroundColor: const Color.fromARGB(255, 0, 0, 0),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: scrWidth * 0.09,
+            horizontal: scrWidth * 0.05, 
             vertical: 0,
           ),
           child: Column(
@@ -60,9 +59,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: TextStyle(
                         fontSize: scrHeight * 0.045,
                         fontFamily: 'Montserrat',
-                        fontVariations: [FontVariation('wght', 500)],
+                        fontVariations: const [FontVariation('wght', 500)],
                       ),
-                      children: [
+                      children: const [
                         TextSpan(
                           text: 'Welcome,\n',
                           style: TextStyle(
@@ -82,8 +81,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
-                 IconButton(onPressed: (){
-                 }, iconSize: scrHeight*0.04, color: Colors.grey ,icon: Icon(Icons.person))
+                  IconButton(
+                      onPressed: () {},
+                      iconSize: scrHeight * 0.04,
+                      color: Colors.grey,
+                      icon: const Icon(Icons.person))
                 ],
               ),
               SizedBox(height: scrHeight * 0.03),
@@ -97,9 +99,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       scrHeight * 0.01,
                     ),
                     height: scrHeight * 0.15,
-                    width: scrWidth * 0.55,
+                    width: scrWidth * 0.61,
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(38, 255, 255, 255),
+                      color: const Color.fromARGB(38, 255, 255, 255),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Column(
@@ -109,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           style: TextStyle(
                             fontSize: scrHeight * 0.02,
                             fontFamily: 'Montserrat',
-                            fontVariations: [FontVariation('wght', 500)],
+                            fontVariations: const [FontVariation('wght', 500)],
                             color: Colors.white,
                           ),
                         ),
@@ -125,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             style: TextStyle(
                               fontSize: scrHeight * 0.038,
                               fontFamily: 'Montserrat',
-                              fontVariations: [FontVariation('wght', 800)],
+                              fontVariations: const [FontVariation('wght', 800)],
                               color: Colors.white,
                             ),
                           ),
@@ -145,9 +147,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         child: Container(
                           height: scrHeight * 0.068,
-                          width: scrWidth * 0.24,
+                          width: scrWidth * 0.26,
                           decoration: BoxDecoration(
-                            color: Color.fromARGB(38, 255, 255, 255),
+                            color: const Color.fromARGB(38, 255, 255, 255),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Center(
@@ -164,10 +166,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       SizedBox(height: scrHeight * 0.014),
                       Container(
-                        width: scrWidth * 0.24,
+                        width: scrWidth * 0.26, 
                         height: scrHeight * 0.068,
                         decoration: BoxDecoration(
-                          color: Color.fromARGB(38, 255, 255, 255),
+                          color: const Color.fromARGB(38, 255, 255, 255),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Column(),
@@ -182,36 +184,35 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: TextStyle(
                   fontSize: scrHeight * 0.03,
                   fontFamily: 'Montserrat',
-                  fontVariations: [FontVariation('wght', 700)],
+                  fontVariations: const [FontVariation('wght', 700)],
                   color: Colors.white,
                 ),
               ),
               SizedBox(height: scrHeight * 0.027),
-        
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    width: scrWidth * 0.21,
+                    width: scrWidth * 0.26, 
                     height: scrHeight * 0.1,
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(38, 255, 255, 255),
+                      color: const Color.fromARGB(38, 255, 255, 255),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Column(),
                   ),
                   GestureDetector(
                     onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AnalyticsScreen(),
-                        ),
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const AnalyticsScreen(),
                       ),
+                    ),
                     child: Container(
-                      width: scrWidth * 0.3,
+                      width: scrWidth * 0.38, 
                       height: scrHeight * 0.1,
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(38, 255, 255, 255),
+                        color: const Color.fromARGB(38, 255, 255, 255),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Icon(
@@ -222,10 +223,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Container(
-                    width: scrWidth * 0.21,
+                    width: scrWidth * 0.26, 
                     height: scrHeight * 0.1,
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(38, 255, 255, 255),
+                      color: const Color.fromARGB(38, 255, 255, 255),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Column(),
@@ -240,7 +241,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: TextStyle(
                       fontSize: scrHeight * 0.028,
                       fontFamily: 'Montserrat',
-                      fontVariations: [FontVariation('wght', 700)],
+                      fontVariations: const [FontVariation('wght', 700)],
                       color: Colors.white,
                     ),
                   ),
@@ -253,12 +254,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       );
                     },
-                    icon: Icon(Icons.open_in_new_rounded, color: Colors.white),
+                    icon: const Icon(Icons.open_in_new_rounded, color: Colors.white),
                   ),
                 ],
               ),
               SizedBox(height: scrHeight * 0.015),
-                          Flexible(
+              Flexible(
                 child: ListView.builder(
                   itemCount: 5,
                   itemBuilder: (context, index) {
@@ -267,7 +268,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         horizontal: scrWidth * 0.005,
                         vertical: scrHeight * 0.01,
                       ),
-                      padding: EdgeInsets.all(scrWidth * 0.07),
+                      padding: EdgeInsets.all(scrWidth * 0.06), 
                       decoration: BoxDecoration(
                         color: const Color.fromARGB(38, 255, 255, 255),
                         borderRadius: BorderRadius.circular(15),
@@ -281,7 +282,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               fontSize: scrHeight * 0.022,
                               fontFamily: 'Montserrat',
                               color: Colors.white,
-                              fontVariations: [FontVariation('wght', 600)],
+                              fontVariations: const [FontVariation('wght', 600)],
                             ),
                           ),
                           Text(
@@ -290,7 +291,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               fontSize: scrHeight * 0.022,
                               color: const Color.fromARGB(255, 2, 165, 2),
                               fontFamily: 'Montserrat',
-                              fontVariations: [FontVariation('wght', 600)],
+                              fontVariations: const [FontVariation('wght', 600)],
                             ),
                           ),
                         ],
