@@ -10,10 +10,12 @@ class AnalyticsScreen extends StatefulWidget {
 }
 
 class _AnalyticsScreenState extends State<AnalyticsScreen> {
-
   final double _totalIncome = 50000.00;
   final double _totalSpending = 12500.00;
   int touchedIndex = -1;
+
+  String _selectedPeriod = 'This Month';
+  bool _showBarChart = false;
 
   final Map<String, double> _spendingData = {
     'Food': 4500.00,
@@ -75,14 +77,37 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
           children: [
             SizedBox(height: scrHeight * 0.02),
             _buildSummaryCards(),
+            SizedBox(height: scrHeight * 0.03),
+            _buildTimeFilter(),
             SizedBox(height: scrHeight * 0.04),
-            Text('Spending Breakdown',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: scrHeight * 0.022,
-                    fontWeight: FontWeight.bold)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Spending Breakdown',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: scrHeight * 0.022,
+                        fontWeight: FontWeight.bold)),
+                IconButton(
+                  icon: Icon(
+                    _showBarChart ? Icons.pie_chart_outline_rounded : Icons.bar_chart_rounded,
+                    color: Colors.white70,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _showBarChart = !_showBarChart;
+                    });
+                  },
+                )
+              ],
+            ),
             SizedBox(height: scrHeight * 0.02),
-            _buildSpendingChart(scrHeight),
+            AnimatedCrossFade(
+              duration: const Duration(milliseconds: 300),
+              firstChild: _buildSpendingPieChart(scrHeight),
+              secondChild: _buildSpendingBarChart(scrHeight),
+              crossFadeState: _showBarChart ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+            ),
             SizedBox(height: scrHeight * 0.04),
             Text('Recent Transactions',
                 style: TextStyle(
@@ -98,21 +123,48 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
   }
 
   Widget _buildSummaryCards() {
+    final savings = _totalIncome - _totalSpending;
     return Row(
       children: [
         Expanded(
             child: _summaryCard('Total Income', _totalIncome, Colors.greenAccent[400]!)),
-        const SizedBox(width: 16),
+        const SizedBox(width: 12),
         Expanded(
             child:
                 _summaryCard('Total Spending', _totalSpending, Colors.redAccent[200]!)),
+        const SizedBox(width: 12),
+        Expanded(
+            child: _summaryCard('Savings', savings, Colors.blueAccent[100]!)),
       ],
+    );
+  }
+
+  Widget _buildTimeFilter() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: ['This Month', 'Last Month', 'This Year'].map((period) {
+        bool isSelected = _selectedPeriod == period;
+        return ChoiceChip(
+          label: Text(period),
+          selected: isSelected,
+          onSelected: (selected) {
+            if (selected) {
+              setState(() {
+                _selectedPeriod = period;
+              });
+            }
+          },
+          backgroundColor: Colors.grey[850],
+          selectedColor: Colors.teal[400],
+          labelStyle: TextStyle(color: isSelected ? Colors.black : Colors.white70),
+        );
+      }).toList(),
     );
   }
 
   Widget _summaryCard(String title, double amount, Color color) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
       decoration: BoxDecoration(
         color: Colors.grey[900],
         borderRadius: BorderRadius.circular(16),
@@ -120,19 +172,19 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: TextStyle(color: Colors.grey[400], fontSize: 14)),
+          Text(title, style: TextStyle(color: Colors.grey[400], fontSize: 13)),
           const SizedBox(height: 8),
           Text(
-            'Rs.${amount.toStringAsFixed(2)}',
+            'Rs.${amount.toStringAsFixed(0)}',
             style: TextStyle(
-                color: color, fontSize: 20, fontWeight: FontWeight.bold),
+                color: color, fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildSpendingChart(double scrHeight) {
+  Widget _buildSpendingPieChart(double scrHeight) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -167,7 +219,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                   sections: _getChartSections(),
                 ),
               ),
-                       ),
+            ),
            ),
           const SizedBox(width: 20),
           Expanded(
@@ -195,8 +247,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
       final isTouched = i == touchedIndex;
       final fontSize = isTouched ? 16.0 : 12.0;
       final radius = isTouched ? 60.0 : 50.0;
-      final category = _spendingData.keys.elementAt(i);
-      final amount = _spendingData[category]!;
+      final amount = _spendingData.values.elementAt(i);
       final percentage = (amount / _totalSpending) * 100;
 
       return PieChartSectionData(
@@ -210,6 +261,62 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
             color: const Color(0xffffffff)),
       );
     });
+  }
+
+  Widget _buildSpendingBarChart(double scrHeight) {
+    return Container(
+      height: scrHeight * 0.25,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.grey[900],
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: BarChart(
+        BarChartData(
+          alignment: BarChartAlignment.spaceAround,
+          maxY: 5000,
+          barTouchData: BarTouchData(enabled: true),
+          titlesData: FlTitlesData(
+            show: true,
+            bottomTitles: AxisTitles(
+              sideTitles: SideTitles(
+                showTitles: true,
+                getTitlesWidget: (double value, TitleMeta meta) {
+                  final titles = ['Food', 'Shop', 'Trans', 'Bills', 'Other'];
+                  return SideTitleWidget(
+                    axisSide: meta.axisSide,
+                    space: 4.0,
+                    child: Text(titles[value.toInt()], style: const TextStyle(color: Colors.white70, fontSize: 10)),
+                  );
+                },
+                reservedSize: 16,
+              ),
+            ),
+            leftTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+          ),
+          borderData: FlBorderData(show: false),
+          barGroups: List.generate(_spendingData.length, (index) {
+            return BarChartGroupData(
+              x: index,
+              barRods: [
+                BarChartRodData(
+                  toY: _spendingData.values.elementAt(index),
+                  color: _categoryColors[index],
+                  width: 16,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(4),
+                    topRight: Radius.circular(4),
+                  ),
+                ),
+              ],
+            );
+          }),
+          gridData: const FlGridData(show: false),
+        ),
+      ),
+    );
   }
 
   Widget _indicator({required Color color, required String text}) {
